@@ -10,11 +10,11 @@ USB HID endpoint in the MSP430F5529 chip, and upload firmware to it.
 It was based on the Texas Instruments MSP430_USB_Firmware_Updater_Example software, 
 which seems no longer to be supported or supplied by Texas Instruments the original readme.txt is copied below.
 
-Note : there was a bug in the TI supplied BSL430.dll/lib files that did not allow multiple ì@xxxxî 
+Note : there was a bug in the TI supplied BSL430.dll/lib files that did not allow multiple ‚Äú@xxxx‚Äù 
 address sections - this is now fixed. The TXT file is parsed and converted to a binary file.
 
 The MSP430_USB_Firmware_Updater.exe program, source code and Microsoft Visual Studio 2019 project and solution 
-files are available here https://www.inventio.co.uk/msp430_usb.html, but please note that the project is work 
+files are available here  https://www.inventio.co.uk/msp430_usb_prog.html, but please note that the project is work 
 in progress.
 
 Disclaimer : the software mentioned above is supplied as is, comes with absolutely no warranty, therefore you 
