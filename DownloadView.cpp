@@ -336,6 +336,26 @@ void MSP430_USB_Firmware_Updater::DownloadView::CustomSelectedFirmware(String ^ 
 {
     System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Firmware::typeid));
     bool memoryMassErased = false;            // Tracks if memory has been massed erased to prevent
+
+
+    // Transmit file based on filename
+    BYTE filename[200] = { 0 };
+    StringToChar(filenameString, filename);
+
+    int fileStatus = GetFileAttributes((char*)filename);
+
+    if (fileStatus == INVALID_FILE_ATTRIBUTES)
+    {
+        // no file found
+        
+        worker->ReportProgress(00, "Could not find file : " + filenameString + "\r\n");
+        e->Result = true;
+        // only erase the chip if have found the file to program it with...
+        worker->ReportProgress(00, "Please click on 'Select Firmware' in Step 1'\r\n");
+        worker->ReportProgress(00, "   and Browse for a TXT or BIN file.'\r\n");
+        return;
+    }
+    
     // another segment erase.
     // Howerd Oakford 2021 Dec 13 DownloadStartUp always returns true, because we force a mass erase every time
     if(!DownloadStartUp(worker,e,&memoryMassErased))
@@ -353,22 +373,19 @@ void MSP430_USB_Firmware_Updater::DownloadView::CustomSelectedFirmware(String ^ 
         }
     }
 
-    // Transmit file based on filename
-    BYTE filename[200] = {0};
-    StringToChar(filenameString,filename);
-
+    // 
     // Howerd Oakford 2021 Dec 13 Note : we force a mass erase every time
     // Erases necessary memory segments
     // If memory is not massed erased, erase individual memory segments
-    if(!memoryMassErased)
+    if (!memoryMassErased)
     {
-        worker->ReportProgress(60,"Erasing memory segments \r\n");
-        EraseDataSegment_File((char *) filename);
+        worker->ReportProgress(60, "Erasing memory segments \r\n");
+        EraseDataSegment_File((char*)filename);
     }
 
-    worker->ReportProgress(70,"Sending " + filenameString + "\r\n");
-    BSL_RX_TXT_File((char *) filename, 1);      // the 1 indicates fast mode
-    worker->ReportProgress(75,"Firmware Sent\r\n");
+    worker->ReportProgress(70, "Sending " + filenameString + "\r\n");
+    BSL_RX_TXT_File((char*)filename, 1);      // the 1 indicates fast mode
+    worker->ReportProgress(75, "Firmware Sent\r\n");
 
     // Run CRC check
     worker->ReportProgress(80,"Verifying memory\r\n");

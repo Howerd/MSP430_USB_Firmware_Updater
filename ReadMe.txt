@@ -14,8 +14,12 @@ Note : there was a bug in the TI supplied BSL430.dll/lib files that did not allo
 address sections - this is now fixed. The TXT file is parsed and converted to a binary file.
 
 The MSP430_USB_Firmware_Updater.exe program, source code and Microsoft Visual Studio 2019 project and solution 
-files are available here https://www.inventio.co.uk/msp430_usb.html, but please note that the project is work 
-in progress.
+files are available here https://www.inventio.co.uk/msp430_usb_prog.html.
+
+The TARGET.TXT file is produced by SwiftX from Forth, Inc. (https://www.forth.com/embedded/), and is the "distress" 
+program for the Texas Instruments MSP-TS430PN80USB development board. 
+Folder : ...\SwiftX\samples\distress\launchpad\exp320f5529lp\project.swx .
+The LED on the board should flash SOS in Morse code.
 
 Disclaimer : the software mentioned above is supplied as is, comes with absolutely no warranty, therefore you 
 may only use it at your own risk.
@@ -27,7 +31,7 @@ If you find any bugs please let me know and I will try to fix them as quickly as
 Enjoy!
 Howerd Oakford    www.inventio.co.uk   howerd@inventio.co.uk
 
-2021 Dec 15
+2021 Dec 17
 
 
 /*==========================================================================*\

@@ -342,7 +342,7 @@ namespace MSP430_USB_Firmware_Updater {
         // openFileDialogBrowse
         // 
         this->openFileDialogBrowse->FileName = L"openFileDialogBrowse";
-        this->openFileDialogBrowse->Filter = L"(*.txt)|*.txt|All files (*.*)|*.*";
+        this->openFileDialogBrowse->Filter = L"*.txt *.bin|*.txt;*.bin|All files (*.*)|*.*";
         // 
         // statusBox
         // 
